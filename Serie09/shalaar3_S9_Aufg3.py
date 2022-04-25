@@ -14,7 +14,7 @@ def shalaar3_S9_Aufg3(f, a, b, m):
     b = float(b)
     h = b - a
 
-    T = np.zeros((m + 1), (m + 1))
+    T = np.zeros((m + 1, m + 1))
 
     for j in range(m + 1):
         T[j, 0] = sum_trapez(f, a, b, h / 2 ** j)
@@ -23,7 +23,7 @@ def shalaar3_S9_Aufg3(f, a, b, m):
         for i in range(0, m - j + 1):
             T[i, j] = (4 ** j * T[i + 1, j - 1] - T[i, j - 1]) / (4 ** j - 1)
 
-    print(T)
+    # print(T)
     return T[0, m]
 
 
