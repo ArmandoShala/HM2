@@ -15,19 +15,19 @@ def shalaar3_S11_Aufg1(f, xmin, xmax, ymin, ymax, hx, hy):
     plt.quiver(X, Y, DX, DY)
     plt.xlim([xmin - hx, xmax + hx])
     plt.ylim([ymin - hy, ymax + hy])
-    plt.title('dynamische Pfeile');
+    plt.title('dynamische Pfeile')
     plt.grid()
     plt.show()
 
     DZ = (DX ** 2 + DY ** 2) ** 0.5
     DXnorm = DX / DZ
-    DXnorm = DY / DZ
+    DYnorm = DY / DZ
 
     plt.figure(2)
-    plt.quiver(X, Y, DXnorm, DXnorm)
+    plt.quiver(X, Y, DXnorm, DYnorm)
     plt.xlim([xmin - hx, xmax + hx])
     plt.ylim([ymin - hy, ymax + hy])
-    plt.title('statische Pfeile');
+    plt.title('statische Pfeile')
     plt.grid()
     plt.show()
 
