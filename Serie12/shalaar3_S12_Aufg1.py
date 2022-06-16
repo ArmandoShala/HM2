@@ -1,14 +1,13 @@
 import numpy as np
 
 
-
 def s12(f, a, b, n, y0):
     x = np.zeros(n+1)
     x[0] = a
     y = np.zeros(n+1)
-    y[0] = a
+    y[0] = y0
     h = (b-a)/n
-    for i in range(n):
+    for i in range(0, n):
         k1 = f(x[i], y[i])
         k2 = f(x[i] + h/2, y[i] + h*k1/2)
         k3 = f(x[i] + h/2, y[i] + h*k2/2)
