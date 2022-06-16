@@ -11,15 +11,19 @@ n = int((b - a) / h)
 
 t, y_num = s12(f, a, b, n, y0)
 
-def y_exact(t):
-    return t / 2 + 9 / (2 * t)
+def f(x, y):
+    return 1 - y / x
 
-plt.figure(1)
-plt.plot(t, y_exact(t), "r")
-plt.plot(t, y_num, "b--")
-plt.legend(["exact", "classical RK4"])
-plt.grid()
-plt.show()
+def y_exact(x):
+    return (x / 2.0) + 9 / (2.0 * x)
+
+# plt.figure(1)
+# plt.plot(t, y_exact(t), "r")
+# plt.plot(t, y_num, "b--")
+# plt.legend(["exact", "classical RK4"])
+# plt.title("Fig1")
+# plt.grid()
+# plt.show()
 
 def my_rk4(f, a, b, n, y0):
     h = (b - a) / n
@@ -44,18 +48,21 @@ def my_rk4(f, a, b, n, y0):
         y[i + 1] = y[i] + h * (b[0] * k1 + b[1] * k2 + b[2] * k3 + b[3] * k4)
     return x, y
 
-plt.figure(2)
-plt.plot(t, y_num, "r")
-plt.plot(t, y_exact(t), "b--")
 t, my_y = my_rk4(f, a, b, n, y0)
-plt.plot(t, my_y, "g--")
-plt.legend(["exact", "classical RK4", "my RK4"])
+
+plt.figure(2)
+plt.plot(t, y_num, "g--", label="classical RK4")
+plt.plot(t, y_exact(t), "b", label="exact")
+plt.plot(t, my_y, "r--", label="my RK4")
+plt.legend()
+plt.title("Fig2")
 plt.grid()
 plt.show()
 
 plt.figure(3)
-plt.semilogy(t, np.abs(y_exact(t) - y_num), "b")
-plt.semilogy(t, np.abs(y_exact(t) - my_y), "g")
-plt.legend(["absolute error classical rk4", "absolute error my rk4k"])
+plt.semilogy(t, np.abs(y_exact(t) - y_num), "g", label="classical RK4")
+plt.semilogy(t, np.abs(y_exact(t) - my_y), "b--", label="my RK4")
+plt.legend()
+plt.title("Absolute Error")
 plt.grid()
 plt.show()
